@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ruleta Token Countdown</title>
+  <style>
+    body {
+      background: #0d0d0d;
+      color: #f5f5f5;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #ffd700;
+    }
+    #countdown {
+      font-size: 3rem;
+      font-weight: bold;
+      background: #1a1a1a;
+      padding: 20px 40px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
+    }
+    footer {
+      margin-top: 30px;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎰 Ruleta Token Rewards 🎰</h1>
+  <div id="countdown">Loading...</div>
+  <footer>
+    Próximo sorteo en vivo cada 8 horas 🔥
+  </footer>
+
+  <script>
+    function startCountdown() {
+      const interval = 8 * 60 * 60 * 1000; // 8 horas
+      let end = Date.now() + interval;
+
+      setInterval(() => {
+        let remaining = end - Date.now();
+        if (remaining <= 0) {
+          end = Date.now() + interval;
+          remaining = interval;
+        }
+        let h = Math.floor((remaining / (1000 * 60 * 60)) % 24);
+        let m = Math.floor((remaining / (1000 * 60)) % 60);
+        let s = Math.floor((remaining / 1000) % 60);
+        document.getElementById("countdown").innerHTML = `${h}h ${m}m ${s}s`;
+      }, 1000);
+    }
+    startCountdown();
+  </script>
+</body>
+</html>
